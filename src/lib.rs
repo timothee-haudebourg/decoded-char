@@ -10,6 +10,7 @@ use std::ops::Deref;
 /// Decoded character.
 ///
 /// A character and its original byte length in the encoded source file.
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 pub struct DecodedChar {
 	/// Character.
 	c: char,
@@ -112,6 +113,7 @@ impl Deref for DecodedChar {
 }
 
 /// Iterator wrapper around UTF-8 encoded sources.
+#[derive(Clone, Debug)]
 pub struct Utf8Decoded<C>(pub C);
 
 impl<C> Utf8Decoded<C> {
@@ -131,6 +133,7 @@ impl<C: Iterator<Item = char>> Iterator for Utf8Decoded<C> {
 }
 
 /// Iterator wrapper around fallible UTF-8 encoded sources.
+#[derive(Clone, Debug)]
 pub struct FallibleUtf8Decoded<C>(pub C);
 
 impl<C> FallibleUtf8Decoded<C> {
@@ -152,6 +155,7 @@ impl<E, C: Iterator<Item = Result<char, E>>> Iterator for FallibleUtf8Decoded<C>
 }
 
 /// Iterator wrapper around UTF-16 encoded sources.
+#[derive(Clone, Debug)]
 pub struct Utf16Decoded<C>(pub C);
 
 impl<C> Utf16Decoded<C> {
@@ -171,6 +175,7 @@ impl<C: Iterator<Item = char>> Iterator for Utf16Decoded<C> {
 }
 
 /// Iterator wrapper around fallible UTF-16 encoded sources.
+#[derive(Clone, Debug)]
 pub struct FallibleUtf16Decoded<C>(pub C);
 
 impl<C> FallibleUtf16Decoded<C> {
